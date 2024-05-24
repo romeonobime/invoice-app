@@ -5,3 +5,11 @@
 body {
     background-color: skyblue;
 }
+
+@layer base {
+    hr {
+        border: 0;
+        height: 100%;
+        width: 100%;
+    }
+}

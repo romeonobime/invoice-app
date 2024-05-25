@@ -1,0 +1,26 @@
+{% props
+    id = "RT3080",
+    paymentDue = "2021-08-19",
+    clientName = "Jensen Huang",
+    total = 1800.90,
+    status = "paid"
+%}
+
+<twig:Card class="sm:hidden p-6 sm:py-[30px] md:p-8 grid gap-2 flex flex-col gap-6">
+    <div class="flex items-center justify-between">
+        <twig:CardTitle size="smallVariant">
+            <span class="text-neutral-lighter">#</span>{{ id }}
+        </twig:CardTitle>
+        <twig:CardDescription>{{ clientName }}</twig:CardDescription>
+    </div>
+    <div class="flex justify-between">
+        <div class="flex flex-col gap-2">
+            <twig:CardDescription>
+                Due
+            <span class="text-neutral-lighter">{{ paymentDue }}</span>
+            </twig:CardDescription>
+            <twig:CardDescription theme="darkest">£ {{ total|number_format(2) }}</twig:CardDescription>
+        </div>
+        <twig:Badge theme="paid">{{ status }}</twig:Badge>
+    </div>
+</twig:Card>

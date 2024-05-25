@@ -1,0 +1,15 @@
+{% props shadow = "medium" %}
+
+{% set card = cva({
+    base: 'rounded-lg bg-[#FFFFFF] dark:bg-neutral-dark shadow',
+    variants: {
+        shadow: {
+            medium: 'shadow-medium',
+            large: 'shadow-large',
+        },
+    }
+}) %}
+
+<article class="{{ card.apply({}, attributes.render('class')) | tailwind_merge }}">
+    {% block content %}{% endblock %}
+</article>

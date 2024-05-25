@@ -11,12 +11,25 @@ module.exports = {
       'primary-light': '#9277FF',
       'danger': '#EC5757',
       'danger-light': '#9277FF',
+      'neutral-lightest': '#DFE3FA',
+      'neutral-lighter': '#7E88C3',
+      'neutral-light': '#888EB0',
+      'neutral': '#252945',
+      'neutral-dark': '#1E2139',
+      'neutral-darker': '#141625',
+      'neutral-darkest': '#0C0E16',
+      'light': '#F8F8FB',
     },
     screens: {
       'sm': '641px',
       'md': '769px',
     },
-    extend: {},
+    extend: {
+      boxShadow: {
+        'shadow-medium': '0 10px 10px -10px rgba(72, 84, 159, 0.10)',
+        'shadow-large': '0 10px 20px 0px rgba(72, 84, 159, 0.25)',
+      }
+    },
   },
   plugins: [],
 }

@@ -1,0 +1,28 @@
+{% props
+    icon = false,
+    color = 'primary',
+    size = 'md'
+%}
+
+{% set button = cva({
+    base: 'flex items-center justfify-between gap-4 pl-2 pr-2 h-12 rounded-full',
+    variants: {
+        color: {
+            primary: 'text-[#FFFFFF] fill-primary bg-primary hover:fill-primary-light hover:bg-primary-light',
+            red: 'bg-red',
+            green: 'bg-green',
+        },
+        size: {
+            full: 'w-full',
+        }
+    }
+}) %}
+
+<button class="{{ button.apply({color, size}, attributes.render('class')) | tailwind_merge }}">
+    {% if icon %}
+        <div class="bg-[#FFFFFF] rounded-full h-8 w-8 flex justify-center items-center">
+            {% block icon %}{% endblock %}
+        </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+</button>

@@ -1,0 +1,16 @@
+{% props
+    theme = "darkest"
+%}
+
+{% set label = cva({
+    base: 'bodyVariant font-bold capitalize cursor-pointer',
+    variants: {
+        theme: {
+            darkest: 'neutral-darkest',
+        }
+    }
+}) %}
+
+<label {{ attributes }} class="{{ label.apply({theme}, attributes.render('class')) | tailwind_merge }}">
+    {% block content %}{% endblock %}
+</label>

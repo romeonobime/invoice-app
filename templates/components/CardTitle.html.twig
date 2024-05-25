@@ -1,0 +1,19 @@
+{% props
+    size = ""
+%}
+
+{% set cardTitle = cva({
+    base: 'text-neutral-darkest dark:text-[#FFFFFF]',
+    variants: {
+        size: {
+            large: 'heading-large',
+            medium: 'heading-medium',
+            small: 'heading-small',
+            smallVariant: 'heading-small-variant'
+        }
+    }
+}) %}
+
+<h2 class="{{ cardTitle.apply({size}, attributes.render('class')) | tailwind_merge }}">
+    {% block content %}{% endblock %}
+</h2>

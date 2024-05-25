@@ -1,0 +1,18 @@
+{% props
+    theme = "light"
+%}
+
+{% set cardDescription = cva({
+    base: 'body',
+    variants: {
+        theme: {
+            light: 'text-neutral-light',
+            lighter: 'text-neutral-lighter',
+            darkest: 'text-neutral-darkest'
+        },
+    }
+}) %}
+
+<p class="{{ cardDescription.apply({theme}, attributes.render('class')) | tailwind_merge }}">
+    {% block content %}{% endblock %}
+</p>

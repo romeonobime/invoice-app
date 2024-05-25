@@ -1,0 +1,31 @@
+{% props
+    theme = "",
+%}
+
+{% set badge = cva({
+    base: 'w-[104px] h-[40px] rounded-md flex justify-center items-center',
+    variants: {
+        theme: {
+            paid: 'text-[#33D69F] bg-[#33D69F]/5',
+            pending: 'text-[#FF8F00] bg-[#FF8F00]/5',
+            draft: 'text-[#373B53] bg-[#373B53]/5',
+        },
+    }
+}) %}
+
+{% set badgeContent = cva({
+    base: 'relative bodyVariant font-bold capitalize before:absolute before:w-2 before:h-2 before:rounded-full before:top-1/2 before:translate-y-[-50%] before:left-[-1rem]',
+    variants: {
+        theme: {
+            paid: 'before:bg-[#33D69F]',
+            pending: 'before:bg-[#FF8F00]',
+            draft: 'before:bg-[#373B53]',
+        },
+    }
+}) %}
+
+<div class="{{ badge.apply({theme}, attributes.render('class')) | tailwind_merge }}">
+    <div class="{{ badgeContent.apply({theme}, attributes.render('class')) | tailwind_merge }}">
+        {% block content %}{% endblock %}
+    </div>
+</div>

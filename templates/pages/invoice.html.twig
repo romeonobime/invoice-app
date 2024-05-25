@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Invoice-app{% endblock %}
+
+{% block body %}
+<twig:ThemeProvider>
+    <div class="flex flex-col gap-8 md:flex-row md:gap-0">
+        <twig:Sidebar />
+        <twig:Invoice />
+    </div>
+</twig:ThemeProvider>
+{% endblock %}

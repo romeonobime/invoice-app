@@ -1,4 +1,19 @@
-<div>
-    <twig:InvoiceListDropdownFilterMedium />
-    <twig:InvoiceListDropdownFilterSmall />
-</div>
+<twig:DropdownMenu>
+    <twig:DropdownMenuTrigger>Filter <span class="hidden sm:block">by status</span></twig:DropdownMenuTrigger>
+    <twig:DropdownMenuContent>
+        <twig:Card shadow="large" class="flex flex-col gap-4 p-6">
+            <div class="flex items-center gap-3">
+                <twig:Checkbox id="draft" value="draft"/>
+                <twig:Label for="draft">Draft</twig:Label>
+            </div>
+            <div class="flex items-center gap-3">
+                <twig:Checkbox id="pending" value="pending" />
+                <twig:Label for="pending">Pending</twig:Label>
+            </div>
+            <div class="flex items-center gap-3">
+                <twig:Checkbox id="paid" value="paid" />
+                <twig:Label for="paid">paid</twig:Label>
+            </div>
+        </twig:Card>
+    </twig:DropdownMenuContent>
+</twig:DropdownMenu>

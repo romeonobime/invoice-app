@@ -8,7 +8,7 @@ body {
 
 @layer base {
     :root {
-        --container: 1110px;
+        --container: 730px;
     }
 
     @font-face {
@@ -87,5 +87,12 @@ body {
     .wrapper {
         padding-left: max(calc(50% - var(--container) / 2), 1.5rem);
         padding-right: max(calc(50% - var(--container) / 2), 1.5rem);
+    }
+
+    @media (min-width: 769px) {
+        .wrapper {
+            padding-left: max(calc(50% - var(--container) / 2), 9rem);
+            padding-right: max(calc(50% - var(--container) / 2), 1.5rem);
+        }
     }
 }

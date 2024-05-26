@@ -41,7 +41,7 @@ class Invoice
     private ?Address $clientAddress = null;
 
     #[ORM\Column]
-    private ?int $total = null;
+    private ?float $total = null;
 
     public function getId(): ?int
     {
@@ -156,12 +156,12 @@ class Invoice
         return $this;
     }
 
-    public function getTotal(): ?int
+    public function getTotal(): ?float
     {
         return $this->total;
     }
 
-    public function setTotal(int $total): static
+    public function setTotal(float $total): static
     {
         $this->total = $total;
 

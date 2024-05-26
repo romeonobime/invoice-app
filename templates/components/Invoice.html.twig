@@ -1,4 +1,4 @@
-<div class="wrapper w-full flex flex-col gap-8 md:pt-[55px]">
+<div {{ attributes }} class="wrapper w-full flex flex-col gap-8 md:pt-[55px]">
     <twig:InvoiceHeader />
-	<twig:InvoiceList/>
+	<twig:InvoiceList invoices="{{ computed.invoices }}" />
 </div>

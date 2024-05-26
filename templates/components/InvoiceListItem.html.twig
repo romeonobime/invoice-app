@@ -1,3 +1,9 @@
 <li>
-    <twig:InvoiceCard />
+    <twig:InvoiceCard
+        id="{{ id }}"
+        paymentDue="{{ paymentDue }}"
+        clientName="{{ clientName }}"
+        total="{{ total }}"
+        status="{{ status }}"
+    />
 </li>

@@ -1,5 +1,11 @@
 <ul class="flex flex-col gap-4">
-    <twig:InvoiceListItem />
-    <twig:InvoiceListItem />
-    <twig:InvoiceListItem />
+    {% for invoice in invoices %}
+        <twig:InvoiceListItem
+            id="{{ invoice.id }}"
+            paymentDue="{{ invoice.paymentDue.format('d M Y') }}"
+            clientName="{{ invoice.clientName }}"
+            total="{{ invoice.total }}"
+            status="{{ invoice.status.name }}"
+        />
+    {% endfor %}
 </ul>

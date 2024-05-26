@@ -1,4 +1,7 @@
 <div>
-    <twig:InvoiceListHeaderMedium />
-    <twig:InvoiceListHeaderSmall />
+    <h1 class="heading-large text-neutral-darkest dark:text-[#FFFFFF]">Invoices</h1>
+    <p class="body text-neutral-light dark:text-neutral-lightest">
+        <span class="hidden sm:block">There are {{ invoices|length }} total invoices</span>
+        <span class="sm:hidden">{{ invoices|length }} invoices</span>
+    </p>
 </div>

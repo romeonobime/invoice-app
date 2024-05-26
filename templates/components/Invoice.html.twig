@@ -1,4 +1,6 @@
+{% set invoices = computed.invoices %}
+
 <div {{ attributes }} class="wrapper w-full flex flex-col gap-8 md:pt-[55px]">
-    <twig:InvoiceHeader />
-	<twig:InvoiceList invoices="{{ computed.invoices }}" />
+    <twig:InvoiceHeader invoices="{{ invoices }}" />
+	<twig:InvoiceList invoices="{{ invoices }}" />
 </div>

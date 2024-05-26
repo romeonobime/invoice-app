@@ -1,0 +1,20 @@
+<twig:Dialog>
+    <twig:DialogTrigger data-action="dialog#open" icon>
+        <twig:block name="icon">
+            <twig:IconPlus/>
+        </twig:block>
+        <span class="hidden sm:block">New Invoice</span>
+        <span class="sm:hidden">New</span>
+    </twig:DialogTrigger>
+    <twig:DialogContent>
+        <twig:Card>
+            <twig:Sidebar />
+            <div class="flex">
+                <twig:Button>Save Changes</twig:Button>
+                <twig:DialogTrigger data-action="dialog#close">
+                    Cancel
+                </twig:DialogTrigger>
+            </div>
+        </twig:Card>
+    </twig:DialogContent>
+</twig:Dialog>

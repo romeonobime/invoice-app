@@ -1,25 +1,30 @@
 {% props
-    icon = false,
-    color = 'primary',
-    size = 'md'
+    icon = '',
+    theme = 'primary',
+    size = 'small',
 %}
 
 {% set button = cva({
-    base: 'bodyVariant font-bold flex items-center justfify-between gap-4 pl-2 pr-4 h-12 rounded-full',
+    base: 'bodyVariant font-bold rounded-3xl py-3',
     variants: {
-        color: {
-            primary: 'text-[#FFFFFF] fill-primary bg-primary hover:fill-primary-light hover:bg-primary-light',
-            red: 'bg-red',
-            green: 'bg-green',
+        theme: {
+            primary: 'text-[#FFFFFF] bg-primary fill-primary hover:bg-primary-light hover:fill-primary-light',
+            secondary: 'text-neutral-lighter bg-[#F9FAFE] hover:bg-neutral-lightest dark:text-neutral-lightest dark:bg-neutral dark:hover:bg-[#FFFFFF]',
+            tertiary: 'text-neutral-light bg-[#373B53] hover:bg-neutral-darkest dark:text-neutral-lightest dark:bg-[#373B53] dark:hover:bg-neutral-dark',
+            danger: 'text-[#FFFFFF] bg-danger hover:bg-danger-light',
         },
         size: {
+            small: 'px-4 sm:px-6',
             full: 'w-full',
+        },
+        icon: {
+            prepend: 'p-2 pr-4 flex items-center gap-4'
         }
     }
 }) %}
 
-<button class="{{ button.apply({color, size}, attributes.render('class')) | tailwind_merge }}">
-    {% if icon %}
+<button {{ attributes }} class="{{ button.apply({theme, size, icon}, attributes.render('class')) | tailwind_merge }}">
+    {% if icon == "prepend" %}
         <div class="bg-[#FFFFFF] rounded-full h-8 w-8 flex justify-center items-center">
             {% block icon %}{% endblock %}
         </div>

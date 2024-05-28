@@ -1,8 +1,7 @@
-<div>
+<div {{ attributes }}>
 	<div>
 		<h1>Invoices</h1>
-		<p>There are<!-- Add number here -->total invoices
-		</p>
+		<p>There are {{ invoices|length }} total invoices</p>
 		<button>Filter by status</button>
 		<select>
 			<option>Draft</option>
@@ -11,14 +10,26 @@
 		</select>
 		<button>New Invoice</button>
 	</div>
-
-	<!-- No invoices -->
-	<div>
-		There is nothing here
-        Create an invoice by clicking the New Invoice button and get started
-	</div>
-	<!-- No invoices end -->
-
+    {% if invoices|length > 1 %}
+        <ul>
+        {% for invoice in invoices %}
+            <li>
+                <article>
+                    <h2>{{ invoice.id }}</h2>
+                    <p>{{ invoice.paymentDue.format('d M Y') }}</p>
+                    <p>{{ invoice.client.name }}</p>
+                    <p>£ {{ invoice.total|number_format(2) }}</p>
+                    <p>{{ invoice.status.name }}</p>
+                </article>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+    	<div>
+		    There is nothing here
+            Create an invoice by clicking the New Invoice button and get started
+	    </div>
+    {% endif %}
 	<!-- Create new invoice form -->
 	<div>
 		<button>Go back</button>

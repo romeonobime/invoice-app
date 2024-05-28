@@ -3,32 +3,53 @@
 		<h1>Invoices</h1>
 		<p>There are {{ invoices|length }} total invoices</p>
 		<button>Filter by status</button>
-		<select>
-			<option>Draft</option>
-			<option>Pending</option>
-			<option>Paid</option>
-		</select>
+		<div>
+            <label>
+                <input
+                    type="checkbox"
+                    value="Draft"
+                    data-model="statuses[]"
+                >
+                Draft
+            </label>
+            <label>
+			    <input
+                    type="checkbox"
+                    value="Pending"
+                    data-model="statuses[]"
+                >
+                Pending
+            </label>
+            <label>
+			    <input
+                    type="checkbox"
+                    value="Paid"
+                    data-model="statuses[]"
+                >
+                Paid
+            </label>
+		</div>
 		<button>New Invoice</button>
 	</div>
-    {% if invoices|length > 1 %}
-        <ul>
-        {% for invoice in invoices %}
-            <li>
-                <article>
-                    <h2>{{ invoice.id }}</h2>
-                    <p>{{ invoice.paymentDue.format('d M Y') }}</p>
-                    <p>{{ invoice.client.name }}</p>
-                    <p>£ {{ invoice.total|number_format(2) }}</p>
-                    <p>{{ invoice.status.name }}</p>
-                </article>
-            </li>
-        {% endfor %}
-        </ul>
-    {% else %}
-    	<div>
+    {% if invoices is empty %}
+        <div>
 		    There is nothing here
             Create an invoice by clicking the New Invoice button and get started
 	    </div>
+    {% else %}
+        <ul>
+            {% for invoice in computed.invoices %}
+                <li>
+                    <article>
+                        <h2>{{ invoice.id }}</h2>
+                        <p>{{ invoice.paymentDue.format('d M Y') }}</p>
+                        <p>{{ invoice.client.name }}</p>
+                        <p>£ {{ invoice.total|number_format(2) }}</p>
+                        <p>{{ invoice.status.name }}</p>
+                    </article>
+                </li>
+            {% endfor %}
+        </ul>
     {% endif %}
 	<!-- Create new invoice form -->
 	<div>

@@ -40,4 +40,14 @@ class InvoiceRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findByStatus(array $status)
+    {
+        return $this->createQueryBuilder('i')
+            ->innerJoin('i.status', 's')
+            ->where('s.name IN (:status)')
+            ->setParameter('status', $status)
+            ->getQuery()
+            ->getResult();
+    }
 }

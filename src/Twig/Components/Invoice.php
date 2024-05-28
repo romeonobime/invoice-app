@@ -4,6 +4,7 @@ namespace App\Twig\Components;
 
 use App\Repository\InvoiceRepository;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\UX\TwigComponent\Attribute\ExposeInTemplate;
 
@@ -12,6 +13,9 @@ class Invoice
 {
     use DefaultActionTrait;
 
+    #[LiveProp(writable: true)]
+    public array $statuses = [];
+
     public function __construct(private InvoiceRepository $invoiceRepository)
     {
     }
@@ -19,6 +23,9 @@ class Invoice
     #[ExposeInTemplate]
     public function getInvoices(): array
     {
-        return $this->invoiceRepository->findAll();
+        if(empty($this->statuses))
+            return $this->invoiceRepository->findAll();
+
+        return $this->invoiceRepository->findByStatus($this->statuses);
     }
 }

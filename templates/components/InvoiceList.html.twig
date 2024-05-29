@@ -1,0 +1,12 @@
+{% if invoices is empty %}
+    <div>
+        There is nothing here
+        Create an invoice by clicking the New Invoice button and get started
+    </div>
+{% else %}
+    <ul>
+        {% for invoice in invoices %}
+            <twig:InvoiceListItem invoice="{{ invoice }}" />
+        {% endfor %}
+    </ul>
+{% endif %}

@@ -2,7 +2,7 @@
     <article>
         <h2>{{ invoice.id }}</h2>
         <p>{{ invoice.paymentDue.format('d M Y') }}</p>
-        <p>{{ invoice.client.name }}</p>
+        <p>{{ invoice.clientName }}</p>
         <p>£ {{ invoice.total|number_format(2) }}</p>
         <p>{{ invoice.status.name }}</p>
     </article>

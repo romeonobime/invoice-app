@@ -13,7 +13,7 @@ class Invoice
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?string $id = null;
+    private ?int $id = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -25,32 +25,38 @@ class Invoice
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'invoices')]
-    private ?PaymentTerms $paymentTerms = null;
+    private ?InvoicePaymentTerms $paymentTerms = null;
 
-    #[ORM\ManyToOne(inversedBy: 'invoices')]
-    private ?Client $client = null;
+    #[ORM\Column(length: 255)]
+    private ?string $clientName = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $clientEmail = null;
 
     #[ORM\ManyToOne(inversedBy: 'invoices')]
     private ?InvoiceStatus $status = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Address $senderAddress = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Address $clientAddress = null;
 
     #[ORM\Column]
     private ?float $total = null;
 
     /**
-     * @var Collection<int, Item>
+     * @var Collection<int, InvoiceItem>
      */
-    #[ORM\ManyToMany(targetEntity: Item::class, inversedBy: 'invoices')]
+    #[ORM\OneToMany(targetEntity: InvoiceItem::class, mappedBy: 'invoice')]
     private Collection $items;
-
-    #[ORM\ManyToOne(inversedBy: 'invoices')]
-    private ?Address $senderAddress = null;
 
     public function __construct()
     {
         $this->items = new ArrayCollection();
     }
 
-    public function getId(): ?string
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -91,26 +97,38 @@ class Invoice
         return $this;
     }
 
-    public function getPaymentTerms(): ?PaymentTerms
+    public function getPaymentTerms(): ?InvoicePaymentTerms
     {
         return $this->paymentTerms;
     }
 
-    public function setPaymentTerms(?PaymentTerms $paymentTerms): static
+    public function setPaymentTerms(?InvoicePaymentTerms $paymentTerms): static
     {
         $this->paymentTerms = $paymentTerms;
 
         return $this;
     }
 
-    public function getClient(): ?Client
+    public function getClientName(): ?string
     {
-        return $this->client;
+        return $this->clientName;
     }
 
-    public function setClient(?Client $client): static
+    public function setClientName(string $clientName): static
     {
-        $this->client = $client;
+        $this->clientName = $clientName;
+
+        return $this;
+    }
+
+    public function getClientEmail(): ?string
+    {
+        return $this->clientEmail;
+    }
+
+    public function setClientEmail(string $clientEmail): static
+    {
+        $this->clientEmail = $clientEmail;
 
         return $this;
     }
@@ -123,6 +141,30 @@ class Invoice
     public function setStatus(?InvoiceStatus $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getSenderAddress(): ?Address
+    {
+        return $this->senderAddress;
+    }
+
+    public function setSenderAddress(?Address $senderAddress): static
+    {
+        $this->senderAddress = $senderAddress;
+
+        return $this;
+    }
+
+    public function getClientAddress(): ?Address
+    {
+        return $this->clientAddress;
+    }
+
+    public function setClientAddress(?Address $clientAddress): static
+    {
+        $this->clientAddress = $clientAddress;
 
         return $this;
     }
@@ -140,37 +182,31 @@ class Invoice
     }
 
     /**
-     * @return Collection<int, Item>
+     * @return Collection<int, InvoiceItem>
      */
     public function getItems(): Collection
     {
         return $this->items;
     }
 
-    public function addItem(Item $item): static
+    public function addItem(InvoiceItem $item): static
     {
         if (!$this->items->contains($item)) {
             $this->items->add($item);
+            $item->setInvoice($this);
         }
 
         return $this;
     }
 
-    public function removeItem(Item $item): static
+    public function removeItem(InvoiceItem $item): static
     {
-        $this->items->removeElement($item);
-
-        return $this;
-    }
-
-    public function getSenderAddress(): ?Address
-    {
-        return $this->senderAddress;
-    }
-
-    public function setSenderAddress(?Address $senderAddress): static
-    {
-        $this->senderAddress = $senderAddress;
+        if ($this->items->removeElement($item)) {
+            // set the owning side to null (unless already changed)
+            if ($item->getInvoice() === $this) {
+                $item->setInvoice(null);
+            }
+        }
 
         return $this;
     }

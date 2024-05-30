@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\AddressRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AddressRepository::class)]
@@ -26,17 +24,6 @@ class Address
 
     #[ORM\Column(length: 255)]
     private ?string $country = null;
-
-    /**
-     * @var Collection<int, Invoice>
-     */
-    #[ORM\OneToMany(targetEntity: Invoice::class, mappedBy: 'senderAddress')]
-    private Collection $invoices;
-
-    public function __construct()
-    {
-        $this->invoices = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -87,36 +74,6 @@ class Address
     public function setCountry(string $country): static
     {
         $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Invoice>
-     */
-    public function getInvoices(): Collection
-    {
-        return $this->invoices;
-    }
-
-    public function addInvoice(Invoice $invoice): static
-    {
-        if (!$this->invoices->contains($invoice)) {
-            $this->invoices->add($invoice);
-            $invoice->setSenderAddress($this);
-        }
-
-        return $this;
-    }
-
-    public function removeInvoice(Invoice $invoice): static
-    {
-        if ($this->invoices->removeElement($invoice)) {
-            // set the owning side to null (unless already changed)
-            if ($invoice->getSenderAddress() === $this) {
-                $invoice->setSenderAddress(null);
-            }
-        }
 
         return $this;
     }

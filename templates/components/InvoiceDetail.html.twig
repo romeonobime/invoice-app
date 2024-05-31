@@ -1,0 +1,61 @@
+<div {{ attributes }}>
+    <article>
+        Status {{ invoice.status.name }}
+        <button>Edit</button>
+        <button>Delete</button>
+        <button>Mark as Paid</button>
+    </article>
+    <article>
+        <div>
+            <p>{{ invoice.id }}</p>
+            <p>{{ invoice.description }}</p>
+        </div>
+        <div>
+            <p>{{ invoice.senderAddress.street }}</p>
+            <p>{{ invoice.senderAddress.city }}</p>
+            <p>{{ invoice.senderAddress.postCode }}</p>
+            <p>{{ invoice.senderAddress.country }}</p>
+        </div>
+        <div>
+            <p>Invoice Date</p>
+            <p>{{ invoice.createdAt.format('d M Y') }}</p>
+        </div>
+        <div>
+            <p>Payment Due</p>
+            <p>{{ invoice.paymentDue.format('d M Y') }}</p>
+        </div>
+        <div>
+            <p>Bill to</p>
+            <p>{{ invoice.clientName }}</p>
+            <div>
+                <p>{{ invoice.clientAddress.street }}</p>
+                <p>{{ invoice.clientAddress.city }}</p>
+                <p>{{ invoice.clientAddress.postCode }}</p>
+                <p>{{ invoice.clientAddress.country }}</p>
+            </div>
+        </div>
+        <div>
+            <p>Sent to</p>
+            <p>{{ invoice.clientEmail }}</p>
+        </div>
+        <div>
+            <div>
+                {% for item in invoice.items %}
+                    <li>
+                        <article>
+                            <p>{{ item.name }}</p>
+                            <p>{{ item.quantity }}</p>
+                            <p>{{ item.price|number_format(2) }}</p>
+                            <p>{{ item.quantity }} * £ {{ item.price|number_format(2) }}</p>
+                            <p>£ {{ item.total|number_format(2) }}</p>
+                        </article>
+                    </li>
+                {% endfor %}
+            </div>
+            <div>
+                <p>Grand Total</p>
+                <p>£ {{ invoice.total|number_format(2) }}</p>
+            </div>
+        </div>
+    </article>
+</div>

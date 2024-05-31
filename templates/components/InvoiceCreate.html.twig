@@ -1,0 +1,25 @@
+<div {{ attributes }}>
+	{{ form_start(form) }}
+        <button
+            data-action="live#action:prevent"
+            data-live-action-param="create"
+            data-live-status-id-param="0"
+        >
+            Discard
+        </button>
+		<button
+            data-action="live#action:prevent"
+            data-live-action-param="create"
+            data-live-status-id-param="3"
+        >
+            Save as Draft
+        </button>
+		<button
+            data-action="live#action:prevent"
+            data-live-action-param="create"
+            data-live-status-id-param="2"
+        >
+            Save & Send
+        </button>
+	{{ form_end(form) }}
+</div>

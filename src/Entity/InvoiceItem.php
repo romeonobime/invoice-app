@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\InvoiceItemRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: InvoiceItemRepository::class)]
@@ -93,5 +91,10 @@ class InvoiceItem
         $this->invoice = $invoice;
 
         return $this;
+    }
+
+    public function calculateTotal()
+    {
+        $this->total = $this->price * $this->quantity;
     }
 }

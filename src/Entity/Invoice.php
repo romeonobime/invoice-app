@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use App\Doctrine\GenerateInvoiceId;
 use App\Repository\InvoiceRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,9 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
 class Invoice
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: 'string')]
+    #[ORM\GeneratedValue(strategy: 'CUSTOM')]
+    #[ORM\CustomIdGenerator(class: GenerateInvoiceId::class)]
+    private ?string $id = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -21,7 +24,7 @@ class Invoice
     #[ORM\Column]
     private ?\DateTimeImmutable $paymentDue = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'invoices')]
@@ -30,7 +33,7 @@ class Invoice
     #[ORM\Column(length: 255)]
     private ?string $clientName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $clientEmail = null;
 
     #[ORM\ManyToOne(inversedBy: 'invoices')]
@@ -42,21 +45,22 @@ class Invoice
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Address $clientAddress = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $total = null;
 
     /**
      * @var Collection<int, InvoiceItem>
      */
-    #[ORM\OneToMany(targetEntity: InvoiceItem::class, mappedBy: 'invoice')]
+    #[ORM\OneToMany(targetEntity: InvoiceItem::class, mappedBy: 'invoice', cascade: ['persist', 'remove'])]
     private Collection $items;
 
     public function __construct()
     {
         $this->items = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable("now");
     }
 
-    public function getId(): ?int
+    public function getId(): ?string
     {
         return $this->id;
     }
@@ -209,5 +213,19 @@ class Invoice
         }
 
         return $this;
+    }
+
+    public function calculateTotal()
+    {
+        foreach ($this->getItems() as $invoiceItem) {
+            $this->total += $invoiceItem->getTotal();
+        }
+    }
+
+    public function calculateTotalForEachItem()
+    {
+        foreach ($this->getItems() as $invoiceItem) {
+            $invoiceItem->calculateTotal();
+        }
     }
 }

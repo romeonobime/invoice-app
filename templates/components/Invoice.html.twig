@@ -2,20 +2,7 @@
 	<div>
 		<twig:InvoiceHeader invoices="{{ computed.invoices }}" />
 		<twig:InvoiceFilter />
-		<button>New Invoice</button>
+		<twig:InvoiceCreate />
 	</div>
 	<twig:InvoiceList invoices="{{ computed.invoices }}" />
-	<!-- Create new invoice form -->
-	<div>
-		<button>Go back</button>
-
-
-		<h2>New Invoice</h2>
-
-		<label>Bill From</label>
-		<button>Discard</button>
-		<button>Save as Draft</button>
-		<button>Save & Send</button>
-	</div>
-	<!-- Create new invoice end -->
 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Twig\Components;
 
+use App\Entity\Invoice;
 use App\Repository\InvoiceRepository;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
@@ -21,9 +22,13 @@ class InvoiceDetail
     }
 
     #[ExposeInTemplate]
-    public function getInvoice()
+    public function getInvoice(): Invoice
     {
         $invoiceId = $this->requestStack->getCurrentRequest()->attributes->get("id");
-        return $this->invoiceRepository->find($invoiceId);
+
+        /** @var Invoice $invoice */
+        $invoice = $this->invoiceRepository->find($invoiceId);
+
+        return $invoice;
     }
 }

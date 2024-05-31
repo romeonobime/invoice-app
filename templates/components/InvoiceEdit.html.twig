@@ -1,0 +1,18 @@
+<div {{ attributes }}>
+	{{ form_start(form) }}
+        <button
+            data-action="live#action:prevent"
+            data-live-action-param="edit"
+            data-live-clicked-param="cancel"
+        >
+            Cancel
+        </button>
+		<button
+            data-action="live#action:prevent"
+            data-live-action-param="edit"
+            data-live-clicked-param="saveChanges"
+        >
+            Save Changes
+        </button>
+	{{ form_end(form) }}
+</div>

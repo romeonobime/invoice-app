@@ -15,8 +15,10 @@ class InvoiceController extends AbstractController
     }
 
     #[Route('/detail/{id}/', name: 'app_invoice_detail')]
-    public function detail(): Response
+    public function detail(string $id): Response
     {
-        return $this->render('invoice/detail.html.twig');
+        return $this->render('invoice/detail.html.twig', [
+            'invoiceId' => $id
+        ]);
     }
 }

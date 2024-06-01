@@ -3,7 +3,7 @@
         Status {{ invoice.status.name }}
         <twig:InvoiceEdit initialFormData="{{ invoice }}" />
         <twig:InvoiceDelete invoiceId="{{ invoice.id }}" />
-        <button>Mark as Paid</button>
+        <twig:InvoiceMarkAsPaid invoiceId="{{ invoice.id }}" />
     </article>
     <article>
         <div>

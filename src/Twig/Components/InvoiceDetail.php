@@ -8,11 +8,16 @@ use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Symfony\UX\TwigComponent\Attribute\ExposeInTemplate;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\UX\LiveComponent\Attribute\LiveListener;
+use Symfony\UX\LiveComponent\Attribute\LiveProp;
 
 #[AsLiveComponent]
 class InvoiceDetail
 {
     use DefaultActionTrait;
+
+    #[LiveProp]
+    public string $invoiceId = "";
 
     public function __construct(
         private InvoiceRepository $invoiceRepository,
@@ -22,12 +27,11 @@ class InvoiceDetail
     }
 
     #[ExposeInTemplate]
+    #[LiveListener('getInvoice')]
     public function getInvoice(): Invoice
     {
-        $invoiceId = $this->requestStack->getCurrentRequest()->attributes->get("id");
-
         /** @var Invoice $invoice */
-        $invoice = $this->invoiceRepository->find($invoiceId);
+        $invoice = $this->invoiceRepository->find(["id" => $this->invoiceId]);
 
         return $invoice;
     }

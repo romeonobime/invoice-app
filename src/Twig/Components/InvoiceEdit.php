@@ -13,12 +13,14 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use Symfony\UX\LiveComponent\Attribute\LiveArg;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
+use Symfony\UX\LiveComponent\ComponentToolsTrait;
 
 #[AsLiveComponent]
 class InvoiceEdit extends AbstractController
 {
     use DefaultActionTrait;
     use LiveCollectionTrait;
+    use ComponentToolsTrait;
 
     #[LiveProp]
     public ?Invoice $initialFormData = null;
@@ -45,5 +47,6 @@ class InvoiceEdit extends AbstractController
         $entityManager->persist($invoice);
         $entityManager->flush();
         $this->resetForm();
+        $this->emit("getInvoice");
     }
 }

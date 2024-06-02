@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-color: skyblue;
+@layer base {
+    @font-face {
+        font-family: "League-Spartan";
+        src: url("./../fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf");
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: "League-Spartan", sans-serif;
+    }
 }

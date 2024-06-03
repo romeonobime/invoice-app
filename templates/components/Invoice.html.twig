@@ -1,9 +1,11 @@
 <div {{ attributes }}>
 	<twig:Base:Sidebar />
-	<div>
-		<twig:InvoiceHeader invoices="{{ computed.invoices }}" />
-		<twig:InvoiceFilter />
-		<twig:InvoiceCreate />
+	<div class="wrapper">
+		<div>
+			<twig:InvoiceHeader invoices="{{ computed.invoices }}" />
+			<twig:InvoiceFilter />
+			<twig:InvoiceCreate />
+		</div>
+		<twig:InvoiceList invoices="{{ computed.invoices }}" />
 	</div>
-	<twig:InvoiceList invoices="{{ computed.invoices }}" />
 </div>

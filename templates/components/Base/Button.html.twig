@@ -1,0 +1,33 @@
+{% props
+    icon = '',
+    theme = 'primary',
+    size = 'small',
+%}
+
+{% set button = cva({
+    base: 'bodyVariant font-bold rounded-3xl py-3',
+    variants: {
+        theme: {
+            primary: 'text-[#FFFFFF] bg-primary fill-primary hover:bg-primary-light hover:fill-primary-light',
+            secondary: 'text-neutral-lighter bg-[#F9FAFE] hover:bg-neutral-lightest dark:text-neutral-lightest dark:bg-neutral dark:hover:bg-[#FFFFFF]',
+            tertiary: 'text-neutral-light bg-[#373B53] hover:bg-neutral-darkest dark:text-neutral-lightest dark:bg-[#373B53] dark:hover:bg-neutral-dark',
+            danger: 'text-[#FFFFFF] bg-danger hover:bg-danger-light',
+        },
+        size: {
+            small: 'px-4',
+            full: 'w-full',
+        },
+        icon: {
+            prepend: 'p-2 pr-4 flex items-center gap-4'
+        }
+    }
+}) %}
+
+<button class="{{ button.apply({theme, size, icon}, attributes.render('class')) | tailwind_merge }}" {{ attributes }}>
+    {% if icon == "prepend" %}
+        <div class="bg-[#FFFFFF] rounded-full h-8 w-8 flex justify-center items-center">
+            {% block icon %}{% endblock %}
+        </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+</button>

@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+    :root {
+        --container: 730px;
+    }
+
     @font-face {
         font-family: "League-Spartan";
         src: url("./../fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf");
@@ -13,5 +17,63 @@
         margin: 0;
         box-sizing: border-box;
         font-family: "League-Spartan", sans-serif;
+    }
+}
+
+@layer components {
+    .heading-large {
+        font-weight: bold;
+        font-size: 24px;
+        letter-spacing: -0.75px;
+        @apply sm:text-[36px] sm:tracking-[-1px] leading-[33px];
+    }
+
+    .heading-medium {
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 32px;
+        letter-spacing: -0.5px;
+    }
+
+    .heading-small {
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 15px;
+        letter-spacing: -0.25px;
+    }
+
+    .heading-small-variant {
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 24px;
+        letter-spacing: -0.25px;
+    }
+
+    .body {
+        font-size: 13px;
+        line-height: 18px;
+        letter-spacing: -0.1px;
+        font-weight: 500;
+    }
+
+    .body-variant {
+        font-size: 13px;
+        line-height: 15px;
+        letter-spacing: -0.25px;
+        font-weight: 500;
+    }
+}
+
+@layer utilities {
+    .wrapper {
+        padding-left: max(calc(50% - var(--container) / 2), 1.5rem);
+        padding-right: max(calc(50% - var(--container) / 2), 1.5rem);
+    }
+
+    @media (min-width: 769px) {
+        .wrapper {
+            padding-left: max(calc(50% - var(--container) / 2), 9rem);
+            padding-right: max(calc(50% - var(--container) / 2), 1.5rem);
+        }
     }
 }

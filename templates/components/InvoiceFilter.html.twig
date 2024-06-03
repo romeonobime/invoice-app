@@ -1,29 +1,30 @@
-<details>
-    <summary>Filter by status</summary>
-    <div>
-        <label>
-            <input
-                type="checkbox"
+<details class="relative group w-fit">
+    <summary class="flex items-center gap-3 cursor-pointer">
+        <p class="hidden sm:block font-bold text-[15px] leading-[15px] tracking-[-0.25px] text-neutral-darkest dark:text-[#FFFFFF]">Filter by status</p>
+        <p class="sm:hidden font-bold text-[15px] leading-[15px] tracking-[-0.25px] text-neutral-darkest dark:text-[#FFFFFF]">Filter</p>
+        <div class="group-open:rotate-180"><twig:Base:IconArrowDown /></div>
+    </summary>
+    <div class="flex flex-col gap-4 p-6 absolute top-[calc(100%+1.5rem)] left-1/2 translate-x-[-50%] rounded bg-[#FFFFFF] w-[192px] dark:bg-neutral shadow-[0_10px_20px_0px_hsl(231,38,45,0.25)]">
+        <twig:Base:Label class="flex items-center gap-3">
+            <twig:Base:Checkbox
                 value="Draft"
-                data-model="statuses[]"
-            >
+                model="statuses[]"
+            />
             Draft
-        </label>
-        <label>
-            <input
-                type="checkbox"
+        </twig:Base:Label>
+        <twig:Base:Label class="flex items-center gap-3">
+            <twig:Base:Checkbox
                 value="Pending"
-                data-model="statuses[]"
-            >
+                model="statuses[]"
+            />
             Pending
-        </label>
-        <label>
-            <input
-                type="checkbox"
+        </twig:Base:Label>
+        <twig:Base:Label class="flex items-center gap-3">
+            <twig:Base:Checkbox
                 value="Paid"
-                data-model="statuses[]"
-            >
+                model="statuses[]"
+            />
             Paid
-        </label>
+        </twig:Base:Label>
     </div>
 </details>

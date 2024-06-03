@@ -1,0 +1,7 @@
+ {% set label = cva({
+    base: 'w-fit font-bold text-[15px] leading-[15px] tracking-[-0.25px] cursor-pointer text-neutral-darkest dark:text-[#FFFFFF]',
+}) %}
+
+<label class="{{ label.apply({}, attributes.render('class')) | tailwind_merge }}">
+    {% block content %}{% endblock %}
+</label>

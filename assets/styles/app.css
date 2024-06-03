@@ -18,6 +18,14 @@
         box-sizing: border-box;
         font-family: "League-Spartan", sans-serif;
     }
+
+    summary {
+        list-style: none;
+    }
+
+    input[type="checkbox"] {
+        appearance: none;
+    }
 }
 
 @layer components {

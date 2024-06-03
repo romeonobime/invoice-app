@@ -20,6 +20,10 @@ module.exports = {
       'neutral-darkest': '#0C0E16',
       'light': '#F8F8FB',
     },
+    screens: {
+      'sm': '641px',
+      'md': '769px',
+    },
     extend: {},
   },
   plugins: [],

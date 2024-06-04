@@ -1,25 +1,12 @@
-<div {{ attributes }}>
-	{{ form_start(form) }}
-        <button
-            data-action="live#action:prevent"
-            data-live-action-param="create"
-            data-live-status-id-param="0"
-        >
-            Discard
-        </button>
-		<button
-            data-action="live#action:prevent"
-            data-live-action-param="create"
-            data-live-status-id-param="3"
-        >
-            Save as Draft
-        </button>
-		<button
-            data-action="live#action:prevent"
-            data-live-action-param="create"
-            data-live-status-id-param="2"
-        >
-            Save & Send
-        </button>
-	{{ form_end(form) }}
-</div>
+<twig:Base:Dialog>
+    <twig:Base:Button icon="prepend" data-action="dialog#open">
+        <twig:block name="icon">
+            <twig:Base:IconPlus />
+        </twig:block>
+        <div class="hidden sm:block">New Invoice</div>
+        <div class="sm:hidden">New</div>
+    </twig:Base:Button>
+    <twig:Base:DialogContent>
+        <twig:InvoiceCreateForm />
+    </twig:Base:DialogContent>
+</twig:Base:Dialog>

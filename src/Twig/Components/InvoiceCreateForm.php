@@ -17,7 +17,7 @@ use Symfony\UX\LiveComponent\LiveCollectionTrait;
 use Symfony\UX\LiveComponent\ComponentToolsTrait;
 
 #[AsLiveComponent]
-class InvoiceCreate extends AbstractController
+class InvoiceCreateForm extends AbstractController
 {
     use DefaultActionTrait;
     use LiveCollectionTrait;

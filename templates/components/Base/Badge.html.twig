@@ -1,0 +1,18 @@
+{% props
+    theme = '',
+%}
+
+{% set badge = cva({
+    base: 'bodyVariant font-bold flex justify-center items-center w-[104px] h-10 rounded-md capitalize',
+    variants: {
+        theme: {
+            paid: 'bg-[#33D69F]/5 text-[#33D69F]',
+            pending: 'bg-[#FF8F00]/5 text-[#FF8F00]',
+            draft: 'bg-[#373B53]/5 text-[#373B53] dark:bg-neutral-lightest/5 dark:text-neutral-lightest',
+        },
+    }
+}) %}
+
+<div class="{{ badge.apply({theme}, attributes.render('class')) | tailwind_merge }}" {{ attributes }}>
+    {% block content %}{% endblock %}
+</div>

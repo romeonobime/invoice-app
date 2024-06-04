@@ -1,0 +1,23 @@
+{% props
+    theme = '',
+    size = '',
+%}
+
+{% set badge = cva({
+    base: 'inline',
+    variants: {
+        theme: {
+            light: ' text-neutral-light dark:text-neutral-lightest',
+            lighter: 'text-neutral-lighter dark:text-neutral-lightest',
+            darkest: 'text-neutral-darkest dark:text-[#FFFFFF]',
+        },
+        size: {
+            body: 'body',
+            bodyVariant: 'bodyVariant'
+        },
+    }
+}) %}
+
+<p class="{{ badge.apply({theme, size}, attributes.render('class')) | tailwind_merge }}">
+    {% block content %}{% endblock %}
+</p>

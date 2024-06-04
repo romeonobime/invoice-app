@@ -1,0 +1,7 @@
+{% set badge = cva({
+    base: 'p-6 bg-[#FFFFFF] rounded-lg dark:bg-neutral-dark',
+}) %}
+
+<article class="{{ badge.apply({}, attributes.render('class')) | tailwind_merge }}">
+    {% block content %}{% endblock %}
+</article>

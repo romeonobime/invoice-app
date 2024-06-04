@@ -19,6 +19,10 @@
         font-family: "League-Spartan", sans-serif;
     }
 
+    li {
+        list-style: none;
+    }
+
     summary {
         list-style: none;
     }

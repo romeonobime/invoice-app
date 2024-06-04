@@ -4,7 +4,7 @@
         Create an invoice by clicking the New Invoice button and get started
     </div>
 {% else %}
-    <ul>
+    <ul class="flex flex-col gap-4">
         {% for invoice in invoices %}
             <twig:InvoiceListItem invoice="{{ invoice }}" />
         {% endfor %}

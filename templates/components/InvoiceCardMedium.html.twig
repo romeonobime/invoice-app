@@ -1,0 +1,17 @@
+<twig:Base:Card class="hidden sm:flex items-center justify-between">
+    <div class="flex items-center">
+        <twig:Base:CardTitle>
+            <span class="text-neutral-lighter">#</span>{{ invoice.id }}
+        </twig:Base:CardTitle>
+        <p class="body text-[#858BB2] dark:text-[#FFFFFF] ml-7 mr-12">{{ invoice.clientName }}</p>
+        <twig:Base:CardDescription theme="light" size="body">
+            Due
+            <span class="text-neutral-lighter dark:text-neutral-lightest">{{ invoice.paymentDue.format('d M Y') }}</span>
+        </twig:Base:CardDescription>
+    </div>
+    <div class="flex items-center">
+        <twig:Base:CardDescription size="body-variant" theme="darkest" class="font-bold mr-10">£ {{ invoice.total|number_format(2) }}</twig:Base:CardDescription>
+        <twig:Base:Badge theme="{{ invoice.status.name }}" class="mr-5">{{ invoice.status.name }}</twig:Base:Badge>
+        <twig:Base:IconArrowRight />
+    </div>
+</twig:Base:Card>

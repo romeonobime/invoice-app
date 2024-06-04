@@ -1,10 +1,12 @@
-<div {{ attributes }}>
+<div {{ attributes }} class="flex flex-col gap-8 sm:gap-[60px]">
 	<twig:Base:Sidebar />
-	<div class="wrapper">
-		<div>
+	<div class="wrapper md:pt-20 flex flex-col gap-8 md:gap-16">
+		<div class="flex justify-between items-center">
 			<twig:InvoiceHeader invoices="{{ computed.invoices }}" />
-			<twig:InvoiceFilter />
-			<twig:InvoiceCreate />
+			<div class="flex items-center gap-5 sm:gap-10">
+				<twig:InvoiceFilter />
+				<twig:InvoiceCreate />
+			</div>
 		</div>
 		<twig:InvoiceList invoices="{{ computed.invoices }}" />
 	</div>

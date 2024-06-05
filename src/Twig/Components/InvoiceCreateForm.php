@@ -44,6 +44,7 @@ class InvoiceCreateForm extends AbstractController
 
         if($statusId == 0) {
             $this->resetForm();
+            $this->dispatchBrowserEvent('dialog:close');
             return;
         }
 

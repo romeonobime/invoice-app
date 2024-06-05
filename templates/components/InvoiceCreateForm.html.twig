@@ -1,5 +1,12 @@
-<div {{ attributes }}>
+<div {{ attributes }} class="bg-[#FFFFFF] h-screen  w-full max-w-[720px] md:rounded-r-[20px]">
     {{ form_start(form) }}
+        <twig:Base:ButtonArrowLeft
+            data-action="live#action:prevent"
+            data-live-action-param="create"
+            data-live-status-id-param="0"
+        >
+            Go Back
+        </twig:Base:ButtonArrowLeft>
         <button
             data-action="live#action:prevent"
             data-live-action-param="create"

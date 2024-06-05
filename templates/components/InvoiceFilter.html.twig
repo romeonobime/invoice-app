@@ -5,26 +5,20 @@
         <div class="group-open:rotate-180"><twig:Base:IconArrowDown /></div>
     </summary>
     <div class="flex flex-col gap-4 p-6 absolute top-[calc(100%+1.5rem)] left-1/2 translate-x-[-50%] rounded bg-[#FFFFFF] w-[192px] dark:bg-neutral shadow-[0_10px_20px_0px_hsl(231,38,45,0.25)]">
-        <twig:Base:Label class="flex items-center gap-3">
-            <twig:Base:Checkbox
-                value="Draft"
-                model="statuses[]"
-            />
-            Draft
-        </twig:Base:Label>
-        <twig:Base:Label class="flex items-center gap-3">
-            <twig:Base:Checkbox
-                value="Pending"
-                model="statuses[]"
-            />
-            Pending
-        </twig:Base:Label>
-        <twig:Base:Label class="flex items-center gap-3">
-            <twig:Base:Checkbox
-                value="Paid"
-                model="statuses[]"
-            />
-            Paid
-        </twig:Base:Label>
+        <twig:Base:FormCheckboxField
+            value="Paid"
+            model="statuses[]"
+            labelName="Paid"
+        />
+        <twig:Base:FormCheckboxField
+            value="Pending"
+            model="statuses[]"
+            labelName="Pending"
+        />
+        <twig:Base:FormCheckboxField
+            value="Draft"
+            model="statuses[]"
+            labelName="Draft"
+        />
     </div>
 </details>

@@ -1,7 +1,20 @@
- {% set label = cva({
-    base: 'w-fit font-bold text-[15px] leading-[15px] tracking-[-0.25px] cursor-pointer text-neutral-darkest dark:text-[#FFFFFF]',
+{% props theme = 'darkest', size = 'medium' %}
+
+{% set label = cva({
+    base: '',
+    variants: {
+        theme: {
+            darkest: 'text-neutral-darkest dark:text-[#FFFFFF]',
+            lighter: 'text-neutral-lighter dark:text-neutral-lightest',
+            primary: 'text-primary',
+        },
+        size: {
+            medium: 'font-bold text-[15px] leading-[15px] tracking-[-0.25px]',
+            small: 'text-[13px] leading-[15px] tracking-[-0.1px]',
+        },
+    }
 }) %}
 
-<label class="{{ label.apply({}, attributes.render('class')) | tailwind_merge }}">
+<label class="{{ label.apply({theme, size}, attributes.render('class')) | tailwind_merge }}">
     {% block content %}{% endblock %}
 </label>

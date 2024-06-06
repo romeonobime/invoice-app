@@ -56,4 +56,24 @@ body {
         letter-spacing: -0.25px;
         font-weight: 500;
     }
+
+    .button {
+        @apply bodyVariant font-bold rounded-3xl py-3;
+    }
+
+    .button-primary {
+        @apply text-[#FFFFFF] bg-primary fill-primary hover:bg-primary-light hover:fill-primary-light;
+    }
+
+    .button-secondary {
+        @apply text-neutral-lighter bg-[#F9FAFE] hover:bg-neutral-lightest dark:text-neutral-lightest dark:bg-neutral dark:hover:bg-[#FFFFFF];
+    }
+
+    .button-tertiary {
+        @apply text-neutral-light bg-[#373B53] hover:bg-neutral-darkest dark:text-neutral-lightest dark:bg-[#373B53] dark:hover:bg-neutral-dark;
+    }
+
+    .button-danger {
+        @apply text-[#FFFFFF] bg-danger hover:bg-danger-light;
+    }
 }

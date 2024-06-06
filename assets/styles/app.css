@@ -5,3 +5,10 @@
 body {
     background-color: skyblue;
 }
+
+@layer base {
+    @font-face {
+        font-family: "League-Spartan";
+        src: url("./../fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf");
+    }
+}

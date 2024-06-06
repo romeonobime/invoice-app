@@ -12,3 +12,48 @@ body {
         src: url("./../fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf");
     }
 }
+
+@layer components {
+    .heading-large {
+        font-weight: bold;
+        font-size: 24px;
+        letter-spacing: -0.75px;
+        line-height: 33px;
+        @apply sm:text-[36px] sm:tracking-[-1px];
+    }
+
+    .heading-medium {
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 32px;
+        letter-spacing: -0.5px;
+    }
+
+    .heading-small {
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 15px;
+        letter-spacing: -0.25px;
+    }
+
+    .heading-small-variant {
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 24px;
+        letter-spacing: -0.25px;
+    }
+
+    .body {
+        font-size: 13px;
+        line-height: 18px;
+        letter-spacing: -0.1px;
+        font-weight: 500;
+    }
+
+    .body-variant {
+        font-size: 13px;
+        line-height: 15px;
+        letter-spacing: -0.25px;
+        font-weight: 500;
+    }
+}

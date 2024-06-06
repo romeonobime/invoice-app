@@ -58,7 +58,7 @@ body {
     }
 
     .button {
-        @apply bodyVariant font-bold rounded-3xl py-3;
+        @apply body-variant font-bold rounded-3xl py-3;
     }
 
     .button-primary {

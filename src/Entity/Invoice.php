@@ -30,12 +30,6 @@ class Invoice
     #[ORM\ManyToOne(inversedBy: 'invoices')]
     private ?InvoicePaymentTerms $paymentTerms = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $clientName = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $clientEmail = null;
-
     #[ORM\ManyToOne(inversedBy: 'invoices')]
     private ?InvoiceStatus $status = null;
 
@@ -53,6 +47,9 @@ class Invoice
      */
     #[ORM\OneToMany(targetEntity: InvoiceItem::class, mappedBy: 'invoice', cascade: ['persist', 'remove'])]
     private Collection $items;
+
+    #[ORM\ManyToOne(inversedBy: 'invoices')]
+    private ?Client $client = null;
 
     public function __construct()
     {
@@ -109,30 +106,6 @@ class Invoice
     public function setPaymentTerms(?InvoicePaymentTerms $paymentTerms): static
     {
         $this->paymentTerms = $paymentTerms;
-
-        return $this;
-    }
-
-    public function getClientName(): ?string
-    {
-        return $this->clientName;
-    }
-
-    public function setClientName(string $clientName): static
-    {
-        $this->clientName = $clientName;
-
-        return $this;
-    }
-
-    public function getClientEmail(): ?string
-    {
-        return $this->clientEmail;
-    }
-
-    public function setClientEmail(string $clientEmail): static
-    {
-        $this->clientEmail = $clientEmail;
 
         return $this;
     }
@@ -211,6 +184,18 @@ class Invoice
                 $item->setInvoice(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): static
+    {
+        $this->client = $client;
 
         return $this;
     }

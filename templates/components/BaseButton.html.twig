@@ -1,0 +1,29 @@
+{% props
+    label = '',
+    icon = '',
+    theme = 'primary',
+    size = 'small',
+%}
+
+{% set button = cva({
+    base: 'button body-variant font-bold rounded-3xl py-3 h-12',
+    variants: {
+        theme: {
+            primary: 'button-primary',
+            secondary: 'button-secondary',
+            tertiary: 'button-tertiary',
+            danger: 'button-danger',
+        },
+        size: {
+            small: 'px-4',
+            full: 'w-full',
+        },
+        icon: {
+            true: 'p-2 pr-4 flex items-center gap-4'
+        }
+    }
+}) %}
+
+<button class="{{ button.apply({theme, size, icon}, attributes.render('class')) | tailwind_merge }}" {{ attributes }}>
+    {% block content %}{% endblock %}
+</button>

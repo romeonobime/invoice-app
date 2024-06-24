@@ -1,0 +1,15 @@
+{% form_theme form 'form/base_theme.html.twig' %}
+
+<div {{ attributes }} class="md:absolute md:left-0 dark:bg-neutral-darker bg-[#FFFFFF] sm:rounded-r-[20px] sm:w-[616px] sm:pr-6 sm:pt-6 md:w-[719px]">
+	<div data-scroll-target="scroll" class="pb-[46px] h-[calc(100vh-72px-88px)] sm:h-[calc(100vh-80px-88px)] md:h-[calc(100vh-88px-24px)] scrollbar scrollbar-neutral-lightest dark:scrollbar-neutral overflow-scroll">
+		<header class="md:pl-[157px] px-6 flex flex-col gap-6">
+			<button data-action="dialog#close" type="button" class="sm:hidden flex items-center gap-6 text-neutral-darkest dark:text-[#FFFFFF] heading-small-variant">
+				<twig:BaseIconArrowLeft/>
+				Go back
+			</button>
+			<h1 class="heading-medium text-neutral-darkest dark:text-[#FFFFFF]">New Invoice</h1>
+		</header>
+        <twig:InvoiceFormContent form="{{ form }}" />
+	</div>
+	<twig:InvoiceCreateAction/>
+</div>

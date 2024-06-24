@@ -1,0 +1,114 @@
+{% block text_row %}
+    {% set row_class = row_attr.class|default('') %}
+    {% if form.vars.disabled %}
+        <div class="flex flex-col gap-2 {{ row_class }}">
+            {{ form_label(form, null, { 'label_attr': {'class': 'body text-neutral-lighter dark:text-neutral-lightest'} }) }}
+            {{ form_widget(form, { 'attr': {'class': 'flex items-center bg-primary/0 h-12 font-bold body-variant text-neutral-light dark:text-neutral-lightest'} }) }}
+        </div>
+    {% else %}
+        <div class="flex flex-col gap-2 {{ row_class }}">
+            {{ form_label(form, null, { 'label_attr': {'class': 'body text-neutral-lighter dark:text-neutral-lightest'} }) }}
+            {{ form_widget(form, { 'attr': {'class': 'input'} }) }}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block number_row %}
+    {% set row_class = row_attr.class|default('') %}
+    {% if form.vars.disabled %}
+        <div class="flex flex-col gap-2 {{ row_class }}">
+            {{ form_label(form, null, { 'label_attr': {'class': 'body text-neutral-lighter dark:text-neutral-lightest'} }) }}
+            {{ form_widget(form, { 'attr': {'class': 'flex items-center bg-primary/0 h-12 font-bold body-variant text-neutral-light dark:text-neutral-lightest'} }) }}
+        </div>
+    {% else %}
+        <div class="flex flex-col gap-2 {{ row_class }}">
+            {{ form_label(form, null, { 'label_attr': {'class': 'body text-neutral-lighter dark:text-neutral-lightest'} }) }}
+            {{ form_widget(form, { 'attr': {'class': 'input'} }) }}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block choice_row %}
+    <div data-controller="choice" data-choice-target="dropdown"  data-live-ignore class="flex flex-col gap-2">
+        {{ form_label(form, null, { 'label_attr': {'class': 'body text-neutral-lighter dark:text-neutral-lightest'} }) }}
+        <twig:BaseDropdown>
+            <twig:BaseDropdownTrigger class="h-full flex items-center justify-between cursor-pointer">
+                <div data-choice-target="select">Net 1 Day</div>
+                <twig:BaseIconArrowDown />
+            </twig:BaseDropdownTrigger>
+            <twig:BaseDropdownContent class="left-0 absolute z-50 top-[calc(100%+1.5rem)] rounded bg-[#FFFFFF] w-full shadow-lg dark:bg-neutral">
+                <ul>
+                    {% for choice in form.children %}
+                        <li class="border-b border-neutral-lightest dark:border-neutral-dark last:border-none">
+                            <div>
+                                {{ form_widget(choice, { 'attr': {
+                                    'data-choice-target': 'option',
+                                    'data-action': 'choice#select:prevent',
+                                    'data-choice-label-value': choice.vars.label
+                                } }) }}
+                                {{ form_label(choice, null, { 'label_attr': {'class': 'p-5 block w-full cursor-pointer font-bold text-[15px] leading-[15px] tracking-[-0.25px] hover:text-primary dark:text-neutral-lightest'} }) }}
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </twig:BaseDropdownContent>
+        </twig:BaseDropdown>
+    </div>
+{% endblock %}
+
+{% block date_row %}
+    <div data-controller="datepicker" class="flex flex-col gap-2" data-live-ignore>
+        {{ form_label(form, null, { 'label_attr': {'class': 'body text-neutral-lighter dark:text-neutral-lightest'} }) }}
+        <twig:BaseDropdown>
+            <twig:BaseDropdownTrigger class="h-full flex items-center justify-between cursor-pointer">
+                <div data-datepicker-target="time"></div>
+                <twig:BaseIconCalendar />
+            </twig:BaseDropdownTrigger>
+            <twig:BaseDropdownContent class="absolute z-50 left-0 top-[calc(100%+1.5rem)] rounded bg-[#FFFFFF] w-full shadow-lg py-[28px] px-6 flex flex-col gap-8 dark:bg-neutral">
+                <div class="flex justify-between items-center">
+                    <button type="button" data-action="datepicker#decrementMonth"><twig:BaseIconArrowLeft /></button>
+                    <div class="flex gap-1">
+                        <div class="dark:text-neutral-lightest" data-datepicker-target="month"></div>
+                        <div class="dark:text-neutral-lightest" data-datepicker-target="year"></div>
+                    </div>
+                    <button type="button" data-action="datepicker#incrementMonth"><twig:BaseIconArrowRight /></button>
+                </div>
+                <ul data-datepicker-target="calendar" class="grid gap-4 grid-cols-7 items-center content-center">
+                </ul>
+            </twig:BaseDropdownContent>
+        </twig:BaseDropdown>
+    </div>
+{% endblock %}
+
+{% block live_collection_button_add_row %}
+    <twig:BaseButton
+        theme="secondary"
+        size="full"
+        label="+ Add New Item"
+        type="button"
+        id="{{ form.vars.id }}"
+        name="{{ form.vars.full_name }}"
+        data-action="{{ attribute(form.vars.attr, 'data-action') }}"
+        data-live-action-param="{{ attribute(form.vars.attr, 'data-live-action-param') }}"
+        data-live-name-param="{{ attribute(form.vars.attr, 'data-live-name-param') }}"
+    >
+        + Add New Item
+    </twig:BaseButton>
+{% endblock %}
+
+{% block live_collection_button_delete_row %}
+<div class="flex items-center order-5 w-fit h-12 self-end justify-self-end">
+    <button
+        type="button"
+        id="{{ form.vars.id }}"
+        name="{{ form.vars.full_name }}"
+        data-action="{{ attribute(form.vars.attr, 'data-action') }}"
+        data-live-action-param="{{ attribute(form.vars.attr, 'data-live-action-param') }}"
+        data-live-index-param="{{ attribute(form.vars.attr, 'data-live-index-param') }}"
+        data-live-name-param="{{ attribute(form.vars.attr, 'data-live-name-param') }}"
+    >
+        <twig:BaseIconDelete />
+    </button>
+</div>
+{% endblock %}
+

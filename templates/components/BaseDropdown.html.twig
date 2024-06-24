@@ -1,0 +1,14 @@
+{%
+    props
+    targetName = "",
+    actionName = "",
+%}
+
+<details
+    {{ stimulus_controller('dropdown') }}
+    {{ stimulus_target('dropdown', 'details')|stimulus_controller(targetName) }}
+    {{ stimulus_action('dropdown', 'close', 'click@window')|stimulus_controller(actionName) }}
+    {{ attributes.defaults({class: 'input relative open:border-primary hover:border-primary flex items-center' }) }}
+>
+    {% block content %}{% endblock %}
+</details>

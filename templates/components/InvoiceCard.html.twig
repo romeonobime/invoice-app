@@ -1,0 +1,21 @@
+{%
+    props
+    id = "",
+    total = "",
+    status = "",
+    paymentDue = "",
+    clientName = ""
+%}
+
+<article class="grid grid-cols-2 grid-rows-auto  p-6 bg-[#FFFFFF] rounded-lg dark:bg-neutral-dark sm:flex sm:items-center sm:justify-between">
+    <h2 class="mb-6 heading-small-variant text-neutral-darkest dark:text-[#FFFFFF] order-1 sm:m-0">
+        <span class="text-neutral-lighter">#</span>{{ id }}
+    </h2>
+    <p class="body text-[#858BB2] dark:text-[#FFFFFF] order-2 justify-self-end sm:order-3">{{ clientName }}</p>
+    <p class="body text-[#858BB2] dark:text-neutral-lightest order-3 mb-2 sm:m-0 sm:order-2">
+        Due
+        <span class="text-neutral-lighter dark:text-neutral-lightest">{{ paymentDue.format('d M Y') }}</span>
+    </p>
+    <p class="heading-small text-neutral-darkest dark:text-[#FFFFFF] order-5 sm:order-4">£ {{ total|number_format(2) }}</p>
+    <twig:BaseBadge theme="{{ status }}" class="order-4 row-span-2 justify-self-end sm:order-5">{{ status }}</twig:BaseBadge>
+</article>

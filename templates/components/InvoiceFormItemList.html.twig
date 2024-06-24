@@ -1,0 +1,21 @@
+<div class="flex flex-col gap-6" id="{{ form.vars.id }}">
+    {{ form_label(form, null, { 'label_attr': {'class': 'heading-small-variant text-[#777F98]'} }) }}
+    {% if form.children is not empty %}
+        <ul class="flex flex-col gap-12">
+            {% for item in form.children %}
+                <li>
+                    <article class="flex flex-wrap justify-between">
+                        {{ form_row(item.name, { 'row_attr': { 'class': 'order-1 w-full mb-6'} }) }}
+                        {{ form_row(item.quantity, { 'row_attr': { 'class': 'order-2 w-[64px]'} }) }}
+                        {{ form_row(item.price, { 'row_attr': { 'class': 'order-3 w-[100px]'} }) }}
+                        {{ form_row(item.total, { 'row_attr': { 'class': 'order-4 w-[64px]'} }) }}
+                        {{ form_row(item.vars.button_delete) }}
+                    </article>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% do form.setRendered %}
+    {% endif %}
+    {{ form_row(form.vars.button_add) }}
+</div>

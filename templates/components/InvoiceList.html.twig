@@ -1,0 +1,17 @@
+{% props invoices = [] %}
+
+<ul class="flex flex-col gap-4">
+    {% for invoice in invoices %}
+        <li>
+            <a>
+                <twig:InvoiceCard
+                    id="{{ invoice.id }}"
+                    total="{{ invoice.total }}"
+                    status="{{ invoice.status.name }}"
+                    paymentDue="{{ invoice.paymentDue }}"
+                    clientName="{{ invoice.client.name }}"
+                />
+            </a>
+        </li>
+    {% endfor %}
+</ul>

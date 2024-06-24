@@ -1,0 +1,9 @@
+<div class="flex flex-col gap-6">
+    {{ form_label(form, null, { 'label_attr': {'class': 'heading-small-variant text-primary'} }) }}
+    <div class="grid grid-cols-2 gap-6 sm:grid-cols-3">
+        {{ form_row(form.street, {'row_attr': { 'class': 'order-1 col-span-full' }}) }}
+        {{ form_row(form.city, {'row_attr': { 'class': 'order-2' }}) }}
+        {{ form_row(form.postCode, {'row_attr': { 'class': 'order-3' }}) }}
+        {{ form_row(form.country, {'row_attr': { 'class': 'order-4 col-span-full sm:col-auto' }}) }}
+    </div>
+</div>

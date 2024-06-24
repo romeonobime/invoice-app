@@ -1,0 +1,37 @@
+<details class="relative group w-fit">
+    <summary class="select-none cursor-pointer flex items-center gap-3 font-bold body neutral-darkest">
+        <span class="heading-small-variant text-neutral-darkest dark:text-[#FFFFFF]" data-invoice-target="filter" data-live-ignore></span>
+        <div class="group-open:rotate-180"><twig:BaseIconArrowDown /></div>
+    </summary>
+    <div class="flex flex-col gap-4 p-6 absolute top-[calc(100%+1.5rem)] left-1/2 translate-x-[-50%] rounded bg-[#FFFFFF] w-[192px] shadow-[0_10px_20px_0px_hsl(231,38,45,0.25)] dark:bg-neutral">
+        <ul class="flex flex-col gap-4">
+            <li>
+                <twig:BaseLabel>
+                    <twig:BaseCheckbox
+                        model="statuses[]"
+                        value="Draft"
+                    />
+                    Draft
+                </twig:BaseLabel>
+            </li>
+            <li>
+                <twig:BaseLabel>
+                    <twig:BaseCheckbox
+                        model="statuses[]"
+                        value="Pending"
+                    />
+                    Pending
+                </twig:BaseLabel>
+            </li>
+            <li>
+                <twig:BaseLabel>
+                    <twig:BaseCheckbox
+                        model="statuses[]"
+                        value="Paid"
+                    />
+                    Paid
+                </twig:BaseLabel>
+            </li>
+        </ul>
+    </div>
+</details>

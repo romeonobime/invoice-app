@@ -1,0 +1,16 @@
+<div data-scroll-target="item" class="sticky bottom-0 px-6 py-5 bg-[#FFFFFF] dark:bg-neutral-dark flex gap-[7px] justify-between sm:w-[616px] sm:rounded-r-[20px] md:w-[719px] md:pl-[157px]">
+    <twig:BaseButton type="button" data-action="dialog#close" theme="secondary" class="w-[84px]">Discard</twig:BaseButton>
+    <div class="flex gap-[7px]">
+        <twig:BaseButton
+            name="save"
+            data-action="live#action:prevent"
+            data-live-action-param="create"
+            data-live-status-id-param="2"
+            data-live-payment-due-param=""
+            type="submit"
+            form="invoiceForm"
+            theme="tertiary"
+            class="w-[117px]">Save as Draft</twig:BaseButton>
+        <twig:BaseButton name="save" data-live-payment-due-param="" class="w-[112px]">Save & Send</twig:BaseButton>
+    </div>
+</div>

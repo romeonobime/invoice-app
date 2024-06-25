@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-
+import { getComponent } from '@symfony/ux-live-component';
 export default class extends Controller {
     static targets = ["button", "filter", "counter"];
     static values = {
@@ -7,8 +7,15 @@ export default class extends Controller {
         count: Number,
     }
 
+    async initialize() {
+        this.component = await getComponent(this.element);
+        this.component.on('render:finished', () => {
+            this.renderTextContent()
+        });
+    }
 
     connect() {
+        this.renderTextContent();
         addEventListener('resize', () => this.renderTextContent());
     }
 

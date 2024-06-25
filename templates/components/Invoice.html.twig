@@ -1,10 +1,10 @@
-<div {{ attributes }} class="wrapper w-full md:mt-[77px]">
-    <div {{ stimulus_controller('invoice') }} :data-invoice-status-value="statuses[]" data-invoice-count-value="{{ invoices|length }}">
+<div {{ attributes.defaults(stimulus_controller('invoice')) }} :data-invoice-status-value="statuses[]" data-invoice-count-value="{{ invoices|length }}" class="wrapper w-full md:mt-[77px]">
+    <div >
         <section class="flex flex-col gap-8 sm:gap-[55px] md:gap-16">
             <div class="flex items-center justify-between">
                 <header>
                     <h1 class="heading-large text-neutral-darkest dark:text-[#FFFFFF]">Invoices</h1>
-                    <p data-invoice-target="counter" class="body text-neutral-light dark:text-neutral-lightest"></p>
+                    <p data-invoice-target="counter" class="body text-neutral-light dark:text-neutral-lightest" data-action="live#$render"></p>
                 </header>
                 <div class="flex items-center gap-5 sm:gap-10">
                     <twig:InvoiceFilter />
